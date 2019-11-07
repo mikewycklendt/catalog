@@ -1,0 +1,82 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class = 'flash'>
+	{% with messages = get_flashed_messages() %}
+      {% if messages %}
+    	<center>
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+    	</center>
+      {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container"></br>
+
+<div class="row padding-top">				
+<div class="box">
+<div class="row">
+
+<div class="col-md-3">
+
+	<div class="row">
+	<center><h2>Categories</h2></center>
+	</div>
+	{% if categories !=[] %}	
+		{% for category in categories %}
+		<div class="category-list">
+		<a href = "{{url_for('showCategory', category_id = category.id)}}">			
+			{{category.name}}
+		</a>
+		</div>		
+		{% endfor %}
+	{% endif %}
+		
+		<div class="category-list">
+		<a href="{{url_for('showHome') }}">Latest</a>
+		</div>
+		
+	<div class="row"></div>
+	<div class="row"></div>
+	<div class="row"></div>
+
+</div>
+
+<div class="col-md-4">	
+
+	<div class="row">
+	<h2>Latest Items</h2>
+	</div>
+
+	{% if items !=[] %}						
+		{% for i in items %}
+			<div class="row">
+			<div class="item-list">
+				<a href="{{url_for('showItem', item_id = i.id) }}">{{i.title}}</a> <span class="category">
+				<i>	({{i.category.name}})</i></span>
+			</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+			
+
+	{%if 'username' not in session %}
+		{% else %}
+		<div class="row">
+			<br><a href="{{url_for('newItem')}}"><button class="btn add" id="add">Add Item</button></a>
+		</div>	
+	{% endif %}
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

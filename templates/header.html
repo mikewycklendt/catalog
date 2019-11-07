@@ -1,0 +1,16 @@
+
+<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-8 padding-none">
+			<h1>Catalog App</h1>
+		</div>
+
+	<div class="col-md-2 text-right padding-top">
+		{%if 'username' not in session %}
+					<a href="{{url_for('showLogin')}}"><button class="btn login" id="login">Login</button></a>
+		{% else %}
+					<a href="{{url_for('disconnect')}}"><button class="btn login" id="login">Logout</button> </a>
+		{% endif %}
+	</div>
+	<div class="col-md-1"></div>
+</div>
